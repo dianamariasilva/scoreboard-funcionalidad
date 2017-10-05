@@ -101,9 +101,9 @@ const Header = props => {
 const Stopwatch = React.createClass({
   getInitialState: function () {
     return ({
-      running: false,
+      passTime: 0,
       previouseTime: 0,
-      elapsedTime: 0,
+      working: false,
     });
   },
 
@@ -118,41 +118,41 @@ const Stopwatch = React.createClass({
 
   startBtn: function () {
     this.setState({
-      running: true,
       previousTime: Date.now(),
+      working: true,
     });
   },
 
   stopBtn: function () {
     this.setState({
-      running: false,
+      working: false,
     });
   },
 
   resetBtn: function () {
     this.setState({
-      elapsedTime: 0,
       previousTime: Date.now(),
+      passTime: 0,
     });
   },
 
   onTick: function () {
-    if (this.state.running) {
+    if (this.state.working) {
       var now = Date.now();
       this.setState({
-        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime),
+        passTime: this.state.passTime + (now - this.state.previousTime),
         previousTime: Date.now(),
       });
     }
   },
 
   render: function () {
-    var seconds = Math.floor(this.state.elapsedTime / 1000);
+    var seconds = Math.floor(this.state.passTime / 1000);
     return (
       <div className="stopwatch" >
         <h2>Stopwatch</h2>
         <div className="stopwatch-time"> {seconds} </div>
-        { this.state.running ?
+        { this.state.working ?
           <button onClick={this.stopBtn}>Stop</button>
           :
           <button onClick={this.startBtn}>Start</button>
