@@ -19,7 +19,6 @@ class Model {
           id: 3,
         },
       ];
-    this.todos = [];
     this.inputValue = null;
     this.callback = null;
     this.index = 0;
@@ -34,20 +33,21 @@ class Model {
   }
 
   inform() {
-    console.log(this.todos.map(e => e.text));
+    console.log(this.PLAYERS.map(e => e.text));
     this.render();
   }
 
   addPlayer(text) {
-    this.todos.push({ 
-        name: name, 
-        score: 0 
+    this.PLAYERS.push({ 
+        name: text, 
+        score: 0,
+        id: Utils.uuid(),
     });
-    this.inform();
+    this.notify();
   }
   
   addTodo(text) {
-      this.todos.push({
+      this.players.push({
          id: Utils.uuid(),
          text: text,
          completed: false
@@ -56,12 +56,12 @@ class Model {
   }
   
   updateTodo(index, todo) {
-      this.todos[index] = todo;
+      this.PLAYERS[index] = todo;
       this.notify();
   }
   
   removeTodo(todo) {
-      this.todos = this.todos.filter(item => item !== todo);
+      this.PLAYERS = this.PLAYERS.filter(item => item !== todo);
       this.inform();
   }
 
@@ -195,8 +195,13 @@ const PlayerList = props => {
 const PlayerForm = props => {
   return(
     <div className="add-player-form">
-      <form action="">
-        <input type="text" placeholder="Enter a name"></input>
+      <form 
+          onSubmit={e => {
+          e.preventDefault();
+          model.addPlayer(model.inputValue);
+          }}
+      >
+        <input onChange={e => (model.inputValue = e.target.value)} type="text" placeholder="Enter a name"></input>
         <input type="submit" value="ADD PLAYER"></input>
       </form>
     </div>
