@@ -93,12 +93,12 @@ const Header = props => {
       </tbody>
     </table>
     <h1> Scoreboard</h1>
-    <Stopwatch />
+    <Timer />
     </div>
   )
 }
 
-const Stopwatch = React.createClass({
+const Timer = React.createClass({
   getInitialState: function () {
     return ({
       passTime: 0,
