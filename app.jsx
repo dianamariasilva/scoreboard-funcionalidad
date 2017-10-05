@@ -126,6 +126,12 @@ const Stopwatch = React.createClass({
     });
   },
 
+  onStop: function () {
+    this.setState({
+      running: false,
+    });
+  },
+
   onTick: function () {
     if (this.state.running) {
       var now = Date.now();
