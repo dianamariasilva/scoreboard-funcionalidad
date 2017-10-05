@@ -91,12 +91,7 @@ const Header = props => {
       </tbody>
     </table>
     <h1> Scoreboard</h1>
-    <div className="stopwatch">
-        <h2>STOPWHATCH</h2>
-        <p className="stopwatch-time">0</p>
-        <button className="">START</button>
-        <button>RESET</button>
-    </div>
+    <Stopwatch />
     </div>
   )
 }
@@ -210,7 +205,6 @@ const Application = ({title,model}) => {
    return (
      <div className ="scoreboard">
       <Header className="header" players={model.PLAYERS}/>
-      <Stopwatch />
       <PlayerList className="stats" players={model.PLAYERS} model={model}/>
       <PlayerForm />
       </div>      
