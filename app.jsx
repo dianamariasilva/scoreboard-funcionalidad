@@ -1,3 +1,5 @@
+"use strict";
+
 class Model {
     constructor(){
       this.PLAYERS = [
@@ -114,20 +116,20 @@ const Stopwatch = React.createClass({
   },
 
 
-  onStart: function () {
+  startBtn: function () {
     this.setState({
       running: true,
       previousTime: Date.now(),
     });
   },
 
-  onStop: function () {
+  stopBtn: function () {
     this.setState({
       running: false,
     });
   },
 
-  onReset: function () {
+  resetBtn: function () {
     this.setState({
       elapsedTime: 0,
       previousTime: Date.now(),
@@ -151,11 +153,11 @@ const Stopwatch = React.createClass({
         <h2>Stopwatch</h2>
         <div className="stopwatch-time"> {seconds} </div>
         { this.state.running ?
-          <button onClick={this.onStop}>Stop</button>
+          <button onClick={this.stopBtn}>Stop</button>
           :
-          <button onClick={this.onStart}>Start</button>
+          <button onClick={this.startBtn}>Start</button>
         }
-        <button onClick={this.onReset}>Reset</button>
+        <button onClick={this.resetBtn}>Reset</button>
       </div>
     )
   }
