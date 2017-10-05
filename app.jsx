@@ -126,19 +126,6 @@ const Stopwatch = React.createClass({
     });
   },
 
-  onStop: function () {
-    this.setState({
-      running: false,
-    });
-  },
-
-  onReset: function () {
-    this.setState({
-      elapsedTime: 0,
-      previousTime: Date.now(),
-    });
-  },
-
   onTick: function () {
     if (this.state.running) {
       var now = Date.now();
